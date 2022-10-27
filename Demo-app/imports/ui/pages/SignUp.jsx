@@ -1,14 +1,27 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor'
 import TextField from '@mui/material/TextField';
 import { CssBaseline, Container, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { TextFieldValidation } from '../components/TextField';
+import { useNavigate } from 'react-router-dom'
 
 function SignUp() {
+    const navigate = useNavigate();
     const { control, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        console.log(data)
+    const onSubmit = (dataNewUser) => {
+        Meteor.call(
+            'user.insert',
+            dataNewUser,
+            (error) => {
+                if (error) {
+                    console.log('Register ERROR:', error.reason)
+                    return
+                }
+                navigate('/')
+            }
+        )
     }
     return (
         <>
@@ -33,6 +46,12 @@ function SignUp() {
                         component='form'
                         onSubmit={handleSubmit(onSubmit)}
                         noValidate
+                        sx={{
+                            mt: 4,
+                            display: flex,
+                            flexDirection: column,
+
+                        }}
                     >
                         <TextFieldValidation
                             name='email'
@@ -66,7 +85,7 @@ function SignUp() {
                         />
 
                         <Button variant="contained" color="primary" type="submit">
-                            Iniciar Sesión
+                            Registrarse
                         </Button>
                     </Box>
 
