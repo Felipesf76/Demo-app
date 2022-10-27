@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 import TextField from '@mui/material/TextField';
 import { CssBaseline, Container, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { TextFieldValidation } from '../components/TextField';
 
-
-const Login = () => {
+function SignUp() {
     const { control, handleSubmit } = useForm();
     const onSubmit = (data) => {
         console.log(data)
@@ -28,7 +27,7 @@ const Login = () => {
                         variant="h4"
                         color="initial"
                     >
-                        Inicio de Sesión
+                        Registrate!
                     </Typography>
                     <Box
                         component='form'
@@ -82,4 +81,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default SignUp
