@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import { CssBaseline, Container, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { TextFieldValidation } from '../components/TextField';
+import { useNavigate } from 'react-router-dom';
+import LoadingButton from '@mui/lab/LoadingButton'
 
 
 const Login = () => {
     const { control, handleSubmit } = useForm();
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
-        console.log(data)
+        setLoading(true);
+        Meteor.loginWithPassword(
+            data.email,
+            data.password,
+            (error) => {
+                if (error) {
+                    console.error('Error on Login: ' + error.reason)
+                    return
+                }
+                const isAuth = Boolean(Meteor.userId())
+                setTimeout(() => {
+                    Accounts.onLogin(() => {
+                        navigate(`/home`)
+                        setLoading(false)
+                    })
+                }, 5000)
+            }
+        )
     }
     return (
         <>
@@ -65,10 +87,9 @@ const Login = () => {
                             }
                             type='password'
                         />
-
-                        <Button variant="contained" color="primary" type="submit">
+                        <LoadingButton variant="contained" color="primary" type="submit" loading={loading}>
                             Iniciar Sesión
-                        </Button>
+                        </LoadingButton>
                     </Box>
 
                 </Box>

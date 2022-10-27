@@ -48,8 +48,8 @@ function SignUp() {
                         noValidate
                         sx={{
                             mt: 4,
-                            display: flex,
-                            flexDirection: column,
+                            display: 'flex',
+                            flexDirection: 'column',
 
                         }}
                     >
