@@ -1,7 +1,8 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = () => {
-   return <div>PrivateRoute</div>;
+const PrivateRoutes = ({ isAuth, children }) => {
+   return isAuth ? children : <Navigate to='/' />;
 };
 
-export default PrivateRoute;
+export default PrivateRoutes;

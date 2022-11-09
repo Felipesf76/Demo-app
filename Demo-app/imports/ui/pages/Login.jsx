@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import TextField from '@mui/material/TextField';
-import { CssBaseline, Container, Typography, Button } from '@mui/material';
+import { CssBaseline, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { TextFieldValidation } from '../components/TextField';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton'
-
+//import background from '../../../public/images/background.webp'
+// const background = new URL("../../../public/images/background.webp", import.meta.url)
 
 const Login = () => {
     const { control, handleSubmit } = useForm();
@@ -23,10 +23,9 @@ const Login = () => {
                     console.error('Error on Login: ' + error.reason)
                     return
                 }
-                const isAuth = Boolean(Meteor.userId())
                 setTimeout(() => {
                     Accounts.onLogin(() => {
-                        navigate(`/home`)
+                        navigate('/home')
                         setLoading(false)
                     })
                 }, 5000)
@@ -38,17 +37,24 @@ const Login = () => {
             <CssBaseline>
                 <Box
                     sx={{
+                        backgroundImage: 'url(images/image1.jpeg)',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center',
+                        // position: 'absolute',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: 'flex-start',
                         width: '100vw',
                         height: '100vh',
                     }}
                 >
+                    {/* <img src="images/background.webp" /> */}
                     <Typography
                         variant="h4"
                         color="initial"
+                        sx={{ mt: 15 }}
                     >
                         Inicio de Sesión
                     </Typography>
@@ -56,6 +62,13 @@ const Login = () => {
                         component='form'
                         onSubmit={handleSubmit(onSubmit)}
                         noValidate
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            width: '400px',
+                            mt: 12,
+                            gap: 4
+                        }}
                     >
                         <TextFieldValidation
                             name='email'
@@ -70,7 +83,7 @@ const Login = () => {
                                     }
                                 }
                             }
-
+                            fullWidth
                         />
                         <TextFieldValidation
                             name='password'
@@ -86,19 +99,43 @@ const Login = () => {
                                 }
                             }
                             type='password'
+                            fullWidth
                         />
-                        <LoadingButton variant="contained" color="primary" type="submit" loading={loading}>
+                        <LoadingButton
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            loading={loading}
+                        >
                             Iniciar Sesión
                         </LoadingButton>
                     </Box>
 
+                    <Box
+                        sx={{
+                            mt: 2,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: '100vw',
+                            gap: 13
+                        }}
+                    >
+                        <Typography
+                            variant="body1"
+                        >
+                            {`Si no tienes una cuenta. `}
+                        </Typography>
+                        <Link
+                            to='/signup'
+                            style={{ textDecoration: 'none' }}
+                        >
+                            Registrate aquí.
+                        </Link>
+                    </Box>
+
                 </Box>
             </CssBaseline>
-            <TextField
-                id="standard-basic"
-                label="Standard"
-                variant="standard"
-            />
         </>
     )
 }

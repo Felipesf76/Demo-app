@@ -1,11 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor'
-import TextField from '@mui/material/TextField';
-import { CssBaseline, Container, Typography, Button } from '@mui/material';
+import { CssBaseline, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { TextFieldValidation } from '../components/TextField';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function SignUp() {
     const navigate = useNavigate();
@@ -31,9 +30,10 @@ function SignUp() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: 'flex-start',
                         width: '100vw',
-                        height: '100vh',
+                        height: 'auto',
+                        mt: 15
                     }}
                 >
                     <Typography
@@ -47,10 +47,11 @@ function SignUp() {
                         onSubmit={handleSubmit(onSubmit)}
                         noValidate
                         sx={{
-                            mt: 4,
+                            mt: 12,
                             display: 'flex',
                             flexDirection: 'column',
-
+                            width: '400px',
+                            gap: 4
                         }}
                     >
                         <TextFieldValidation
@@ -66,7 +67,7 @@ function SignUp() {
                                     }
                                 }
                             }
-
+                            fullWidth
                         />
                         <TextFieldValidation
                             name='password'
@@ -82,20 +83,44 @@ function SignUp() {
                                 }
                             }
                             type='password'
+                            fullWidth
                         />
 
                         <Button variant="contained" color="primary" type="submit">
                             Registrarse
                         </Button>
                     </Box>
-
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            width: '100vw',
+                            justifyContent: 'center',
+                            mt: 2,
+                            gap: 20
+                        }}
+                    >
+                        <Typography
+                            variant="body1"
+                        >
+                            {`Si tienes una cuenta `}
+                        </Typography>
+                        <Link
+                            to='/'
+                            style={{ textDecoration: 'NONE' }}
+                        >
+                            Inicia sesión
+                        </Link>
+                    </Box>
+                    <div
+                        style={{
+                            backgroundImage: 'url(images/background.webp)',
+                            backgroundRepeat: 'no-repeat',
+                            width: '500px',
+                            height: '500px'
+                        }}
+                    ></div>
                 </Box>
             </CssBaseline>
-            <TextField
-                id="standard-basic"
-                label="Standard"
-                variant="standard"
-            />
         </>
     )
 }
