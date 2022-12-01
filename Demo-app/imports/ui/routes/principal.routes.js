@@ -16,13 +16,15 @@ const principalRoutes = () => {
    Accounts.onLogin(() => {
       setRouteState(true);
    });
+   console.log(routeState);
+   debugger;
 
    return (
       <>
          <BrowserRouter>
             <Routes>
                <Route
-                  path='/*'
+                  path='/'
                   element={
                      <PublicRoutes
                         isAuth={routeState}

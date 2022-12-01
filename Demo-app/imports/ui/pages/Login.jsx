@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CssBaseline, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
-import { TextFieldValidation } from '../components/TextField';
+import { TextFieldValidation } from '../components/forms/TextField';
 import { useNavigate, Link } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton'
 //import background from '../../../public/images/background.webp'
@@ -37,7 +37,7 @@ const Login = () => {
             <CssBaseline>
                 <Box
                     sx={{
-                        backgroundImage: 'url(images/image1.jpeg)',
+                        //backgroundImage: 'url(images/image1.jpeg)',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',

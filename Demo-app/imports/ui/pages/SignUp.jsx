@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor'
 import { CssBaseline, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useForm } from 'react-hook-form';
-import { TextFieldValidation } from '../components/TextField';
+import { TextFieldValidation } from '../components/forms/TextField';
 import { useNavigate, Link } from 'react-router-dom'
 
 function SignUp() {
