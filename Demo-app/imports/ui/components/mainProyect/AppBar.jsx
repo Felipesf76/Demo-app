@@ -15,7 +15,28 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { ConstructionOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom'
 
-const pages = ['Inicio', 'Proyectos', 'Innovación', 'Transformación Digital', 'Industria 4.0'];
+const pages = [
+    {
+        name: 'Inicio',
+        page: '/home'
+    },
+    {
+        name: 'Proyectos',
+        page: '/home/proyects'
+    },
+    {
+        name: 'Innovación',
+        page: '/home'
+    },
+    {
+        name: 'Transformación Digital',
+        page: '/home'
+    },
+    {
+        name: 'Industria 4.0',
+        page: '/home'
+    }
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -92,8 +113,8 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -120,12 +141,18 @@ function ResponsiveAppBar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.name}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                <Link to='/home/proyects' >
-                                    {page}
+                                <Link
+                                    to={page.page}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: '#fff'
+                                    }}
+                                >
+                                    {page.name}
                                 </Link>
                             </Button>
                         ))}

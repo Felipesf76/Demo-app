@@ -17,14 +17,13 @@ const principalRoutes = () => {
       setRouteState(true);
    });
    console.log(routeState);
-   debugger;
 
    return (
       <>
          <BrowserRouter>
             <Routes>
                <Route
-                  path='/'
+                  path='/*'
                   element={
                      <PublicRoutes
                         isAuth={routeState}
@@ -34,7 +33,7 @@ const principalRoutes = () => {
                   }
                />
                <Route
-                  path='/home'
+                  path='/home/*'
                   element={
                      <PrivateRoutes
                         isAuth={routeState}
