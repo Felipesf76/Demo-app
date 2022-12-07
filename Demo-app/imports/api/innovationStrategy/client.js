@@ -1,0 +1,1 @@
+export { InnovationStrategy } from './shared';

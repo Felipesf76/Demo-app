@@ -1,5 +1,5 @@
 import React from 'react'
-import ResponsiveAppBar from '../components/mainProyect/AppBar'
+import ResponsiveAppBar from '../components/mainProject/AppBar'
 import { Box, CssBaseline, Typography } from '@mui/material'
 
 const Home = () => {

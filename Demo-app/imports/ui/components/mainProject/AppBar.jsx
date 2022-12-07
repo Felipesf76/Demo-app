@@ -22,7 +22,7 @@ const pages = [
     },
     {
         name: 'Proyectos',
-        page: '/home/proyects'
+        page: '/home/projects'
     },
     {
         name: 'Innovación',
@@ -140,21 +140,21 @@ function ResponsiveAppBar() {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Button
+                            <Link
                                 key={page.name}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                to={page.page}
+                                style={{
+                                    textDecoration: 'none',
+                                    color: '#fff'
+                                }}
                             >
-                                <Link
-                                    to={page.page}
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: '#fff'
-                                    }}
+                                <Button
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     {page.name}
-                                </Link>
-                            </Button>
+                                </Button>
+                            </Link>
                         ))}
                     </Box>
 

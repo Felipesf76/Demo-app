@@ -1,0 +1,1 @@
+export { InnovationHuman } from './shared';

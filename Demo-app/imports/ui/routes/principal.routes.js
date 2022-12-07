@@ -16,7 +16,6 @@ const principalRoutes = () => {
    Accounts.onLogin(() => {
       setRouteState(true);
    });
-   console.log(routeState);
 
    return (
       <>

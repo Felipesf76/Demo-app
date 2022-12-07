@@ -111,14 +111,7 @@ function SignUp() {
                             Inicia sesión
                         </Link>
                     </Box>
-                    <div
-                        style={{
-                            backgroundImage: 'url(images/background.webp)',
-                            backgroundRepeat: 'no-repeat',
-                            width: '500px',
-                            height: '500px'
-                        }}
-                    ></div>
+
                 </Box>
             </CssBaseline>
         </>

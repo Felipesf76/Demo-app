@@ -1,1 +1,10 @@
 import '../../api/users/client';
+import '../../api/projects/client';
+import '../../api/innovation/client';
+import '../../api/innovationCulture/client';
+import '../../api/innovationInvestigation/client';
+import '../../api/innovationHuman/client';
+import '../../api/innovationLeadership/client';
+import '../../api/innovationStrategy/client';
+import '../../api/digitalTransformation/client';
+import '../../api/industry/client';
