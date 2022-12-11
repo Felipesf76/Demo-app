@@ -1,0 +1,1 @@
+export { IndustryTechnology } from './shared';

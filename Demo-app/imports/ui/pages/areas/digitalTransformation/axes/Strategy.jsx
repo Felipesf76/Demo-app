@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
 
-const Strategy = () => {
+const DigitalStrategy = () => {
     const { projectName } = useParams()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
         point3: 0,
         point4: 0,
-        point5: 0
+        point5: 0,
+        point6: 0,
+        point7: 0
     })
 
     const handleSave = () => {
@@ -21,6 +23,8 @@ const Strategy = () => {
             value.point3,
             value.point4,
             value.point5,
+            value.point6,
+            value.point7
         ]
         const result = average(array)
         const newValue = {
@@ -30,7 +34,7 @@ const Strategy = () => {
             result
         }
         Meteor.call(
-            'innovationStrategy.insert',
+            'digitalStrategy.insert',
             newValue
         )
         const strategyResult = {
@@ -38,7 +42,7 @@ const Strategy = () => {
             value: result
         }
         Meteor.call(
-            'innovation.update',
+            'digitalTransformation.update',
             projectName,
             strategyResult
         )
@@ -77,35 +81,49 @@ const Strategy = () => {
                         setValue={setValue}
                         object={value}
                         questionNumber='point1'
-                        label='1. ¿En la empresa se realizan planes estratégicos y de proyección a largo plazo?'
+                        label='1. ¿La empresa realiza actualizaciones en el portafolio de acuerdo a la demanda y tendencias del mercado?'
                     />
                     <RadioButton
                         value={value.point2}
                         setValue={setValue}
                         object={value}
                         questionNumber='point2'
-                        label='2. ¿Las ideas generadas están enfocadas al cliente interno y externo?'
+                        label='2. ¿La empresa cuenta con procesos de control de calidad antes de lanzar su producto/servicio al mercado?'
                     />
                     <RadioButton
                         value={value.point3}
                         setValue={setValue}
                         object={value}
                         questionNumber='point3'
-                        label='3. ¿Los objetivos principales de la empresa están alineados con la innovación?'
+                        label='3. ¿Existe relación de los objetivos y visión de la empresa con la visión/objetivos de transformación digital?'
                     />
                     <RadioButton
                         value={value.point4}
                         setValue={setValue}
                         object={value}
                         questionNumber='point4'
-                        label='4. ¿Se establece una hoja de ruta para el proceso de innovación?'
+                        label='4. ¿La empresa cuenta con presupuesto anual para Transformación digital? Si la empresa no cuenta con presupuesto para procesos de transformación digital marque cero “0”'
                     />
                     <RadioButton
                         value={value.point5}
                         setValue={setValue}
                         object={value}
                         questionNumber='point5'
-                        label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
+                        label='5. ¿La empresa hace uso de los datos en la toma de decisiones?'
+                    />
+                    <RadioButton
+                        value={value.point6}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point6'
+                        label='6. ¿La empresa cuenta con espacios estratégicos para potencializar la transformación digital en la organización? Marque 0 si no cuenta con espacios y 5 si cuenta con diversos espacios.'
+                    />
+                    <RadioButton
+                        value={value.point7}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point7'
+                        label='7. ¿La empresa cuenta con proyectos que permiten transformar por medio de la tecnología a corto o mediano plazo sus procesos?'
                     />
 
                 </Box>
@@ -120,4 +138,4 @@ const Strategy = () => {
     )
 }
 
-export default Strategy
+export default DigitalStrategy

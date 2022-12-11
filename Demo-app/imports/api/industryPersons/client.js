@@ -1,0 +1,1 @@
+export { IndustryPersons } from './shared';

@@ -1,0 +1,1 @@
+export { DigitalStrategy } from './shared';

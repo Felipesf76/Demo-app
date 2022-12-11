@@ -13,4 +13,16 @@ Meteor.methods({
       };
       DigitalTransformation.insert(newComponent);
    },
+   'digitalTransformation.update'(
+      name,
+      newValue
+   ) {
+      const object =
+         DigitalTransformation.findOne({
+            name: name,
+         });
+      DigitalTransformation.update(object, {
+         $push: { results: newValue },
+      });
+   },
 });

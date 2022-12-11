@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
 
-const Strategy = () => {
+const IndustrySkills = () => {
     const { projectName } = useParams()
     const [value, setValue] = useState({
         point1: 0,
@@ -20,7 +20,7 @@ const Strategy = () => {
             value.point2,
             value.point3,
             value.point4,
-            value.point5,
+            value.point5
         ]
         const result = average(array)
         const newValue = {
@@ -30,15 +30,15 @@ const Strategy = () => {
             result
         }
         Meteor.call(
-            'innovationStrategy.insert',
+            'industrySkills.insert',
             newValue
         )
         const strategyResult = {
-            label: 'Estrategia',
+            label: 'Competencias Digitales',
             value: result
         }
         Meteor.call(
-            'innovation.update',
+            'industry.update',
             projectName,
             strategyResult
         )
@@ -60,7 +60,7 @@ const Strategy = () => {
                     color="initial"
                     sx={{ m: 7 }}
                 >
-                    Cuestionario Estrategia
+                    Cuestionario Competencias Digitales
                 </Typography>
                 <Box
                     sx={{
@@ -71,43 +71,41 @@ const Strategy = () => {
                         mb: 7
                     }}
                 >
-
                     <RadioButton
                         value={value.point1}
                         setValue={setValue}
                         object={value}
                         questionNumber='point1'
-                        label='1. ¿En la empresa se realizan planes estratégicos y de proyección a largo plazo?'
+                        label='1. ¿Todo el equipo de la organización es consciente de la importancia del uso de las nuevas tecnologías?'
                     />
                     <RadioButton
                         value={value.point2}
                         setValue={setValue}
                         object={value}
                         questionNumber='point2'
-                        label='2. ¿Las ideas generadas están enfocadas al cliente interno y externo?'
+                        label='2. ¿La empresa genera espacios de actualización relacionado con las nuevas tecnologías?'
                     />
                     <RadioButton
                         value={value.point3}
                         setValue={setValue}
                         object={value}
                         questionNumber='point3'
-                        label='3. ¿Los objetivos principales de la empresa están alineados con la innovación?'
+                        label='3. ¿La empresa promueve campañas de marketing digital?'
                     />
                     <RadioButton
                         value={value.point4}
                         setValue={setValue}
                         object={value}
                         questionNumber='point4'
-                        label='4. ¿Se establece una hoja de ruta para el proceso de innovación?'
+                        label='4. ¿El equipo de trabajo tiene conocimiento detallado de las herramientas tecnológicas que suministra la organización?'
                     />
                     <RadioButton
                         value={value.point5}
                         setValue={setValue}
                         object={value}
                         questionNumber='point5'
-                        label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
+                        label='5. ¿La tecnología es un medio para resolver los problemas causando un menor impacto?'
                     />
-
                 </Box>
                 <Button
                     variant='contained'
@@ -120,4 +118,4 @@ const Strategy = () => {
     )
 }
 
-export default Strategy
+export default IndustrySkills

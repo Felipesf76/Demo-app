@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
 
-const Strategy = () => {
+const Client = () => {
     const { projectName } = useParams()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
         point3: 0,
         point4: 0,
-        point5: 0
+        point5: 0,
+        point6: 0
     })
 
     const handleSave = () => {
@@ -21,6 +22,7 @@ const Strategy = () => {
             value.point3,
             value.point4,
             value.point5,
+            value.point6
         ]
         const result = average(array)
         const newValue = {
@@ -30,15 +32,15 @@ const Strategy = () => {
             result
         }
         Meteor.call(
-            'innovationStrategy.insert',
+            'digitalClient.insert',
             newValue
         )
         const strategyResult = {
-            label: 'Estrategia',
+            label: 'Cliente',
             value: result
         }
         Meteor.call(
-            'innovation.update',
+            'digitalTransformation.update',
             projectName,
             strategyResult
         )
@@ -60,7 +62,7 @@ const Strategy = () => {
                     color="initial"
                     sx={{ m: 7 }}
                 >
-                    Cuestionario Estrategia
+                    Cuestionario Cliente
                 </Typography>
                 <Box
                     sx={{
@@ -77,35 +79,42 @@ const Strategy = () => {
                         setValue={setValue}
                         object={value}
                         questionNumber='point1'
-                        label='1. ¿En la empresa se realizan planes estratégicos y de proyección a largo plazo?'
+                        label='1. ¿La empresa aplica estrategias de omnicanalidad para publicar su información con sus clientes?'
                     />
                     <RadioButton
                         value={value.point2}
                         setValue={setValue}
                         object={value}
                         questionNumber='point2'
-                        label='2. ¿Las ideas generadas están enfocadas al cliente interno y externo?'
+                        label='2. ¿La empresa tiene definida una estrategia para fidelizar y tener cercanía con el cliente?'
                     />
                     <RadioButton
                         value={value.point3}
                         setValue={setValue}
                         object={value}
                         questionNumber='point3'
-                        label='3. ¿Los objetivos principales de la empresa están alineados con la innovación?'
+                        label='3. ¿La empresa qué tanto conoce a sus clientes?'
                     />
                     <RadioButton
                         value={value.point4}
                         setValue={setValue}
                         object={value}
                         questionNumber='point4'
-                        label='4. ¿Se establece una hoja de ruta para el proceso de innovación?'
+                        label='4. ¿Qué tan diferencial es la experiencia de compra y los productos/Servicios que ofrece a sus clientes?'
                     />
                     <RadioButton
                         value={value.point5}
                         setValue={setValue}
                         object={value}
                         questionNumber='point5'
-                        label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
+                        label='5. ¿Regularmente la empresa gestiona adecuadamente la información para mejorar la experiencia de sus clientes?'
+                    />
+                    <RadioButton
+                        value={value.point6}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point6'
+                        label='6. ¿La empresa cuenta con una estrategia sólida de marketing digital?'
                     />
 
                 </Box>
@@ -120,4 +129,4 @@ const Strategy = () => {
     )
 }
 
-export default Strategy
+export default Client

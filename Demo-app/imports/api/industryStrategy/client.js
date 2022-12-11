@@ -1,0 +1,1 @@
+export { IndustryStrategy } from './shared';

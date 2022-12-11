@@ -14,4 +14,12 @@ Meteor.methods({
       };
       Industry.insert(industry);
    },
+   'industry.update'(name, newValue) {
+      const object = Industry.findOne({
+         name: name,
+      });
+      Industry.update(object, {
+         $push: { results: newValue },
+      });
+   },
 });

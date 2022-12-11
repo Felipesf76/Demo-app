@@ -23,6 +23,8 @@ const HumanResources = () => {
         ]
         const result = average(array)
         const newValue = {
+            name: projectName,
+            user: Meteor.user().emails[0].address,
             value,
             result
         }

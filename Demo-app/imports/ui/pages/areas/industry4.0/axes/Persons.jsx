@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
 
-const Strategy = () => {
+const IndustryPersons = () => {
     const { projectName } = useParams()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
         point3: 0,
-        point4: 0,
-        point5: 0
+        point4: 0
     })
 
     const handleSave = () => {
@@ -19,8 +18,7 @@ const Strategy = () => {
             value.point1,
             value.point2,
             value.point3,
-            value.point4,
-            value.point5,
+            value.point4
         ]
         const result = average(array)
         const newValue = {
@@ -30,15 +28,15 @@ const Strategy = () => {
             result
         }
         Meteor.call(
-            'innovationStrategy.insert',
+            'industryPersons.insert',
             newValue
         )
         const strategyResult = {
-            label: 'Estrategia',
+            label: 'Personas/Cultura',
             value: result
         }
         Meteor.call(
-            'innovation.update',
+            'industry.update',
             projectName,
             strategyResult
         )
@@ -60,7 +58,7 @@ const Strategy = () => {
                     color="initial"
                     sx={{ m: 7 }}
                 >
-                    Cuestionario Estrategia
+                    Cuestionario Personas/Cultura
                 </Typography>
                 <Box
                     sx={{
@@ -77,35 +75,28 @@ const Strategy = () => {
                         setValue={setValue}
                         object={value}
                         questionNumber='point1'
-                        label='1. ¿En la empresa se realizan planes estratégicos y de proyección a largo plazo?'
+                        label='1. ¿El equipo de la organización usa alguna metodología ágil para aplicar análisis de datos, desarrollo, etc?'
                     />
                     <RadioButton
                         value={value.point2}
                         setValue={setValue}
                         object={value}
                         questionNumber='point2'
-                        label='2. ¿Las ideas generadas están enfocadas al cliente interno y externo?'
+                        label='2. ¿Qué capacidad de cambio tiene la organización?'
                     />
                     <RadioButton
                         value={value.point3}
                         setValue={setValue}
                         object={value}
                         questionNumber='point3'
-                        label='3. ¿Los objetivos principales de la empresa están alineados con la innovación?'
+                        label='3. ¿Se generan espacios para analizar la posibilidad de implementar nuevas tecnologías en la organización?'
                     />
                     <RadioButton
                         value={value.point4}
                         setValue={setValue}
                         object={value}
                         questionNumber='point4'
-                        label='4. ¿Se establece una hoja de ruta para el proceso de innovación?'
-                    />
-                    <RadioButton
-                        value={value.point5}
-                        setValue={setValue}
-                        object={value}
-                        questionNumber='point5'
-                        label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
+                        label='4. ¿El equipo de trabajo realiza operatividad y estrategia por medio de un sistema de indicadores?'
                     />
 
                 </Box>
@@ -120,4 +111,4 @@ const Strategy = () => {
     )
 }
 
-export default Strategy
+export default IndustryPersons

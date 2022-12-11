@@ -5,19 +5,19 @@ import {
     Box,
 } from '@mui/material'
 import { useSubscribe, useFind } from 'meteor/react-meteor-data'
-import { Innovation } from '../../../../api/innovation/client'
+import { Industry } from '../../../../api/industry/client'
 import { useParams } from 'react-router-dom'
 import Plot from 'react-plotly.js';
 
-const InnovationResults = () => {
+
+const IndustryResults = () => {
     const { projectName } = useParams()
 
-    const isLoading = useSubscribe('innovation.results', projectName)
-    const results = useFind(() => Innovation.find())
+    const isLoading = useSubscribe('industry.results', projectName)
+    const results = useFind(() => Industry.find())
 
     const values = []
     const labels = []
-
 
     for (const result of results) {
 
@@ -63,7 +63,7 @@ const InnovationResults = () => {
                         m: '50px',
                     }}
                 >
-                    Resultados Innovación
+                    Resultados Industria 4.0
                 </Typography>
                 <Plot
                     data={data}
@@ -74,4 +74,4 @@ const InnovationResults = () => {
     )
 }
 
-export default InnovationResults
+export default IndustryResults

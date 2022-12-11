@@ -1,0 +1,1 @@
+export { IndustrySkills } from './shared';

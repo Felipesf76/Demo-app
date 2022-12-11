@@ -1,0 +1,1 @@
+export { DigitalClient } from './shared';

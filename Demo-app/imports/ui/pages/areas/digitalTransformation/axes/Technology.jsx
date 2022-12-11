@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
 
-const Strategy = () => {
+const DigitalTechnology = () => {
     const { projectName } = useParams()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
         point3: 0,
         point4: 0,
-        point5: 0
+        point5: 0,
+        point6: 0
     })
 
     const handleSave = () => {
@@ -21,6 +22,7 @@ const Strategy = () => {
             value.point3,
             value.point4,
             value.point5,
+            value.point6
         ]
         const result = average(array)
         const newValue = {
@@ -30,15 +32,15 @@ const Strategy = () => {
             result
         }
         Meteor.call(
-            'innovationStrategy.insert',
+            'digitalTechnology.insert',
             newValue
         )
         const strategyResult = {
-            label: 'Estrategia',
+            label: 'Tecnología',
             value: result
         }
         Meteor.call(
-            'innovation.update',
+            'digitalTransformation.update',
             projectName,
             strategyResult
         )
@@ -60,7 +62,7 @@ const Strategy = () => {
                     color="initial"
                     sx={{ m: 7 }}
                 >
-                    Cuestionario Estrategia
+                    Cuestionario Tecnología
                 </Typography>
                 <Box
                     sx={{
@@ -77,35 +79,42 @@ const Strategy = () => {
                         setValue={setValue}
                         object={value}
                         questionNumber='point1'
-                        label='1. ¿En la empresa se realizan planes estratégicos y de proyección a largo plazo?'
+                        label='1. ¿La empresa cuenta con planes de diseño y mejoramiento de los procesos internos?'
                     />
                     <RadioButton
                         value={value.point2}
                         setValue={setValue}
                         object={value}
                         questionNumber='point2'
-                        label='2. ¿Las ideas generadas están enfocadas al cliente interno y externo?'
+                        label='2. ¿La empresa cuenta con los métodos de trazabilidad pertinentes para su operación por medio de herramientas tecnológicas?'
                     />
                     <RadioButton
                         value={value.point3}
                         setValue={setValue}
                         object={value}
                         questionNumber='point3'
-                        label='3. ¿Los objetivos principales de la empresa están alineados con la innovación?'
+                        label='3. ¿Con qué frecuencia la empresa ha actualizado los equipos de cómputo y otras herramientas?'
                     />
                     <RadioButton
                         value={value.point4}
                         setValue={setValue}
                         object={value}
                         questionNumber='point4'
-                        label='4. ¿Se establece una hoja de ruta para el proceso de innovación?'
+                        label='4. ¿El equipo de trabajo cuenta con certificados en el uso de herramientas digitales como Hubspot, Oracle, Google, etc.?'
                     />
                     <RadioButton
                         value={value.point5}
                         setValue={setValue}
                         object={value}
                         questionNumber='point5'
-                        label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
+                        label='5. ¿La empresa hace uso de herramientas tecnológicas para la toma de decisiones asertivas?'
+                    />
+                    <RadioButton
+                        value={value.point6}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point6'
+                        label='6. ¿Cómo calificaría la implementación de las tecnologías en las diferentes perspectivas de la empresa?'
                     />
 
                 </Box>
@@ -120,4 +129,4 @@ const Strategy = () => {
     )
 }
 
-export default Strategy
+export default DigitalTechnology

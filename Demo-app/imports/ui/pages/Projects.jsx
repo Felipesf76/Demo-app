@@ -180,30 +180,56 @@ const ProjectsPage = () => {
                             top: '50%',
                             left: '50%',
                             transform: 'translate(-50%, -50%)',
-                            width: 400,
+                            width: 500,
+                            height: 475,
                             bgcolor: 'background.paper',
                             border: '2px solid #000',
                             boxShadow: 24,
                             p: 4,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'space-around'
                         }}
 
                     >
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                        <Typography
+                            id="modal-modal-title"
+                            variant="h6"
+                            component="h2"
+                            sx={{
+                                mb: 2
+                            }}
+                        >
                             Ingrese el nombre del proyecto
                         </Typography>
                         <TextField
                             label='Nombre de Proyecto'
                             value={projectName}
+                            fullWidth
                             onChange={(event) => setProjectName(event.target.value)}
+                            sx={{
+                                mb: 2
+                            }}
                         />
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                        <Typography
+                            id="modal-modal-title"
+                            variant="h6"
+                            component="h2"
+                            sx={{
+                                mb: 2
+                            }}
+                        >
                             Ingrese el sector de la empresa
                         </Typography>
                         <TextField
                             select
                             label='Sector de Empresa'
+                            fullWidth
                             value={projectSector}
                             onChange={(event) => setProjectSector(event.target.value)}
+                            sx={{
+                                mb: 2
+                            }}
                         >
                             {
                                 sectors.map((sector) => (
@@ -213,15 +239,25 @@ const ProjectsPage = () => {
                                 ))
                             }
                         </TextField>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                        <Typography
+                            id="modal-modal"
+                            variant="h6"
+                            component="h2"
+                            sx={{
+                                mb: 2
+                            }}
+                        >
                             Ingrese el tamaño de la empresa
                         </Typography>
                         <TextField
-
+                            fullWidth
                             select
-                            label='Tamaño de empresa'
+                            label='Tamaño de la empresa'
                             value={projectSize}
-                            onchange={(event) => setProjectSize(event.target.value)}
+                            onChange={(event) => setProjectSize(event.target.value)}
+                            sx={{
+                                mb: 2
+                            }}
                         >
                             {
                                 sizes.map((size) => (
@@ -231,18 +267,26 @@ const ProjectsPage = () => {
                                 ))
                             }
                         </TextField>
-                        <br />
-                        <br />
-                        <Button
-                            onClick={handleAddProject}
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'space-around',
+                                mt: 1
+                            }}
                         >
-                            Aceptar
-                        </Button>
-                        <Button
-                            onClick={handleClose}
-                        >
-                            Cancelar
-                        </Button>
+                            <Button
+                                onClick={handleClose}
+                                variant='contained'
+                            >
+                                Cancelar
+                            </Button>
+                            <Button
+                                onClick={handleAddProject}
+                                variant='contained'
+                            >
+                                Aceptar
+                            </Button>
+                        </Box>
                     </Box>
                 </Modal>
 

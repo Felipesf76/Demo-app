@@ -19,7 +19,7 @@ Meteor.methods({
          name: name,
       });
       Innovation.update(object, {
-         $push: { result: newValue },
+         $push: { results: newValue },
       });
    },
    'innovationForRequest.update'(

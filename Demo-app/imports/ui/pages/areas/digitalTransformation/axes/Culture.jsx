@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
 
-const Strategy = () => {
+const DigitalCulture = () => {
     const { projectName } = useParams()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
         point3: 0,
         point4: 0,
-        point5: 0
+        point5: 0,
+        point6: 0,
+        point7: 0,
+        point8: 0,
     })
 
     const handleSave = () => {
@@ -21,6 +24,9 @@ const Strategy = () => {
             value.point3,
             value.point4,
             value.point5,
+            value.point6,
+            value.point7,
+            value.point8
         ]
         const result = average(array)
         const newValue = {
@@ -30,15 +36,15 @@ const Strategy = () => {
             result
         }
         Meteor.call(
-            'innovationStrategy.insert',
+            'digitalCulture.insert',
             newValue
         )
         const strategyResult = {
-            label: 'Estrategia',
+            label: 'Cultura',
             value: result
         }
         Meteor.call(
-            'innovation.update',
+            'digitalTransformation.update',
             projectName,
             strategyResult
         )
@@ -60,7 +66,7 @@ const Strategy = () => {
                     color="initial"
                     sx={{ m: 7 }}
                 >
-                    Cuestionario Estrategia
+                    Cuestionario Cultura
                 </Typography>
                 <Box
                     sx={{
@@ -77,35 +83,56 @@ const Strategy = () => {
                         setValue={setValue}
                         object={value}
                         questionNumber='point1'
-                        label='1. ¿En la empresa se realizan planes estratégicos y de proyección a largo plazo?'
+                        label='1. ¿Todos en la organización reconocen la importancia de la transformación digital?'
                     />
                     <RadioButton
                         value={value.point2}
                         setValue={setValue}
                         object={value}
                         questionNumber='point2'
-                        label='2. ¿Las ideas generadas están enfocadas al cliente interno y externo?'
+                        label='2. ¿Reconocen la importancia del buen uso de la tecnología para potenciar el negocio?'
                     />
                     <RadioButton
                         value={value.point3}
                         setValue={setValue}
                         object={value}
                         questionNumber='point3'
-                        label='3. ¿Los objetivos principales de la empresa están alineados con la innovación?'
+                        label='3. ¿El recurso humano de la empresa no presenta un alto nivel de resistencia al cambio?'
                     />
                     <RadioButton
                         value={value.point4}
                         setValue={setValue}
                         object={value}
                         questionNumber='point4'
-                        label='4. ¿Se establece una hoja de ruta para el proceso de innovación?'
+                        label='4. ¿La cultura de la organización permite agregar valor a cliente interno y externo por medio de herramientas digitales?'
                     />
                     <RadioButton
                         value={value.point5}
                         setValue={setValue}
                         object={value}
                         questionNumber='point5'
-                        label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
+                        label='5. ¿La empresa ofrece beneficios de valor para el equipo de trabajo?'
+                    />
+                    <RadioButton
+                        value={value.point6}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point6'
+                        label='6. ¿La empresa realiza programas de sensibilización y capacitación a su equipo de trabajo para generar adoptar la transformación como parte de su ADN corporativo?'
+                    />
+                    <RadioButton
+                        value={value.point7}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point7'
+                        label='7. ¿La empresa frecuentemente ofrece espacios de capacitaciones de habilidades digitales para los trabajadores?'
+                    />
+                    <RadioButton
+                        value={value.point8}
+                        setValue={setValue}
+                        object={value}
+                        questionNumber='point8'
+                        label='8. ¿La empresa cuenta con canales de comunicación, demostrando compromiso y motivación para los procesos y proyectos de transformación digital?'
                     />
 
                 </Box>
@@ -120,4 +147,4 @@ const Strategy = () => {
     )
 }
 
-export default Strategy
+export default DigitalCulture

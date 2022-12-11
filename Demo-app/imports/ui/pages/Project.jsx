@@ -75,24 +75,36 @@ const Project = () => {
             </Button>
           </Link>
           <Link
+            to={`/home/projects/${projectName}/digitalTransformation`}
+            style={{ textDecoration: 'none' }}
+
           >
             <Button
               variant="contained"
               sx={{
+                height: '70px',
                 fontSize: '1em'
               }}
             >
               Transformación Digital
             </Button>
           </Link>
-          <Button
-            variant="contained"
-            sx={{
-              fontSize: '1em'
+          <Link
+            to={`/home/projects/${projectName}/industry4.0`}
+            style={{
+              textDecoration: 'none'
             }}
           >
-            Industria 4.0
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                height: '70px',
+                fontSize: '1em'
+              }}
+            >
+              Industria 4.0
+            </Button>
+          </Link>
         </Box>
 
 
