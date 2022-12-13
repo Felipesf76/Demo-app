@@ -4,6 +4,7 @@ import '../../api/innovation/server';
 import '../../api/innovationCulture/server';
 import '../../api/innovationInvestigation/server';
 import '../../api/innovationHuman/server';
+import '../../api/innovationTechnology/server';
 import '../../api/innovationLeadership/server';
 import '../../api/innovationStrategy/server';
 import '../../api/digitalTechnology/server';

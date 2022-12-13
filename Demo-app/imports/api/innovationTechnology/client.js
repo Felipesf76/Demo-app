@@ -1,0 +1,1 @@
+export { InnovationTechnology } from './shared';

@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import { Box, Button, Divider, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const IndustryPersons = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -40,14 +45,14 @@ const IndustryPersons = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/industry4.0/strategy`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -65,8 +70,7 @@ const IndustryPersons = () => {
                         width: '70%',
                         height: 'auto',
                         display: 'flex',
-                        flexDirection: 'column',
-                        mb: 7
+                        flexDirection: 'column'
                     }}
                 >
 
@@ -98,16 +102,48 @@ const IndustryPersons = () => {
                         questionNumber='point4'
                         label='4. ¿El equipo de trabajo realiza operatividad y estrategia por medio de un sistema de indicadores?'
                     />
-
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Link
+                        to={`/home/projects/${projectName}/industry4.0/technology`}
+                        style={{
+                            textDecoration: 'none',
+                            color: '#000'
+                        }}
+                    >
+                        <Button
+                            variant='text'
+                            startIcon={<ArrowBackIcon />}
+                            color='inherit'
+                        >
+                            Tecnología
+                        </Button>
+                    </Link>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Estrategia
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

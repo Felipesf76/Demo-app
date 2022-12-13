@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { Box, Button, CssBaseline, Divider, Typography } from '@mui/material'
+import { useNavigate, useParams } from 'react-router-dom'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Strategy = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -42,14 +45,14 @@ const Strategy = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/innovation/leadership`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -68,7 +71,6 @@ const Strategy = () => {
                         height: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
-                        mb: 7
                     }}
                 >
 
@@ -107,16 +109,33 @@ const Strategy = () => {
                         questionNumber='point5'
                         label='5. ¿La empresa ha lanzado nuevos productos al mercado en los últimos 3 años?'
                     />
-
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Liderazgo
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

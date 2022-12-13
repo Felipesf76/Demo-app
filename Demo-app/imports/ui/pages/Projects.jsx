@@ -21,6 +21,8 @@ import { Link } from 'react-router-dom'
 
 import AddIcon from '@mui/icons-material/Add';
 
+import MainProyect from '../components/mainProject/MainProyect'
+
 const ProjectsPage = () => {
     const [openModal, setOpenModal] = useState(false)
     const [projectName, setProjectName] = useState('')
@@ -100,11 +102,9 @@ const ProjectsPage = () => {
 
     return (
         <>
-            <CssBaseline>
-                <ResponsiveAppBar />
+            <MainProyect>
                 <Box
                     sx={{
-                        width: '100vw',
                         height: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
@@ -291,7 +291,7 @@ const ProjectsPage = () => {
                 </Modal>
 
 
-            </CssBaseline>
+            </MainProyect>
 
         </>
     )

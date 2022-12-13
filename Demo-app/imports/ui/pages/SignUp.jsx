@@ -106,7 +106,7 @@ function SignUp() {
                         </Typography>
                         <Link
                             to='/'
-                            style={{ textDecoration: 'NONE' }}
+                            style={{ textDecoration: 'none' }}
                         >
                             Inicia sesión
                         </Link>

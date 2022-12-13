@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Box, Button, Divider, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Client = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -44,23 +47,23 @@ const Client = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/digitalTransformation/strategy`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
+                    mt: 6
                 }}
             >
                 <Typography
                     variant="h3"
                     color="initial"
-                    sx={{ m: 7 }}
                 >
                     Cuestionario Cliente
                 </Typography>
@@ -70,7 +73,7 @@ const Client = () => {
                         height: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
-                        mb: 7
+                        mt: 4
                     }}
                 >
 
@@ -116,16 +119,34 @@ const Client = () => {
                         questionNumber='point6'
                         label='6. ¿La empresa cuenta con una estrategia sólida de marketing digital?'
                     />
-
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
+
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Estrategia
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

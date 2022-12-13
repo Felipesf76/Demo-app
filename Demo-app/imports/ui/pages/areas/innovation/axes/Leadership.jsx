@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Box, Button, Divider, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Leadership = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -42,14 +46,14 @@ const Leadership = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/innovation/humanResources`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -58,7 +62,7 @@ const Leadership = () => {
                 <Typography
                     variant="h3"
                     color="initial"
-                    sx={{ m: 7 }}
+                    sx={{ m: 6 }}
                 >
                     Cuestionario Liderazgo
                 </Typography>
@@ -68,7 +72,6 @@ const Leadership = () => {
                         height: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
-                        mb: 7
                     }}
                 >
 
@@ -107,16 +110,49 @@ const Leadership = () => {
                         questionNumber='point5'
                         label='5. ¿La empresa ofrece a su equipo de trabajo espacios donde todos desarrollen habilidades de liderazgo?'
                     />
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
 
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Link
+                        to={`/home/projects/${projectName}/innovation/strategy`}
+                        style={{
+                            textDecoration: 'none',
+                            color: '#000'
+                        }}
+                    >
+                        <Button
+                            variant='text'
+                            startIcon={<ArrowBackIcon />}
+                            color='inherit'
+                        >
+                            Estrategia
+                        </Button>
+                    </Link>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Recursos Humanos
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

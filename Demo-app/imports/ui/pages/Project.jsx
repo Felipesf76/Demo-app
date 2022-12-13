@@ -4,20 +4,21 @@ import {
   Box,
   Typography, Button,
 } from '@mui/material'
-import ResponsiveAppBar from '../components/mainProject/AppBar'
 import { useParams, Link } from 'react-router-dom'
+import MainProyect from '../components/mainProject/MainProyect'
+import { useSubscribe, useFind } from 'meteor/react-meteor-data'
+import { Projects } from '../../api/projects/client'
 
 const Project = () => {
   const { projectName } = useParams()
-
+  const isLoading = useSubscribe('project.name', projectName)
+  const project = useFind(() => Projects.find())
   return (
 
-    <CssBaseline>
-      <ResponsiveAppBar />
+    <MainProyect>
       <Box
         sx={{
           display: 'flex',
-          width: '100vw',
           height: 'auto',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -36,20 +37,21 @@ const Project = () => {
           sx={{
             mt: '30px',
             display: 'flex',
-            width: '100vw',
+            width: '100%',
             height: 'auto',
             justifyContent: 'space-around'
           }}
         >
+
           <Typography
             variant="h4"
           >
-            Sector
+            Sector: {project[0].companieSector}
           </Typography>
           <Typography
             variant="h4"
           >
-            Tamaño
+            Tamaño: {project[0].companieSize}
           </Typography>
         </Box>
         <Box
@@ -111,7 +113,7 @@ const Project = () => {
       </Box>
 
 
-    </CssBaseline>
+    </MainProyect>
 
   )
 }

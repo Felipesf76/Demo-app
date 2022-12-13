@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { Box, Button, Divider, Typography } from '@mui/material'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
-
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Investigation = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -41,14 +44,14 @@ const Investigation = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/innovation/culture`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -66,8 +69,7 @@ const Investigation = () => {
                         width: '70%',
                         height: 'auto',
                         display: 'flex',
-                        flexDirection: 'column',
-                        mb: 7
+                        flexDirection: 'column'
                     }}
                 >
 
@@ -99,16 +101,48 @@ const Investigation = () => {
                         questionNumber='point4'
                         label='4. ¿La organización busca nuevas oportunidades de desarrollo de productos/servicios?'
                     />
-
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Link
+                        to={`/home/projects/${projectName}/innovation/humanResources`}
+                        style={{
+                            textDecoration: 'none',
+                            color: '#000'
+                        }}
+                    >
+                        <Button
+                            variant='text'
+                            startIcon={<ArrowBackIcon />}
+                            color='inherit'
+                        >
+                            Recursos Humanos
+                        </Button>
+                    </Link>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Cultura
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

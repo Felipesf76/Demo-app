@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import { Box, Button, Divider, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const DigitalStrategy = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -46,14 +50,14 @@ const DigitalStrategy = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/digitalTransformation/culture`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -71,8 +75,7 @@ const DigitalStrategy = () => {
                         width: '70%',
                         height: 'auto',
                         display: 'flex',
-                        flexDirection: 'column',
-                        mb: 7
+                        flexDirection: 'column'
                     }}
                 >
 
@@ -125,16 +128,48 @@ const DigitalStrategy = () => {
                         questionNumber='point7'
                         label='7. ¿La empresa cuenta con proyectos que permiten transformar por medio de la tecnología a corto o mediano plazo sus procesos?'
                     />
-
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Link
+                        to={`/home/projects/${projectName}/digitalTransformation/client`}
+                        style={{
+                            textDecoration: 'none',
+                            color: '#000'
+                        }}
+                    >
+                        <Button
+                            variant='text'
+                            startIcon={<ArrowBackIcon />}
+                            color='inherit'
+                        >
+                            Cliente
+                        </Button>
+                    </Link>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Cultura
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

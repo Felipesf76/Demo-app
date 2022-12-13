@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import ProjectsPage from '../pages/Projects';
 import Project from '../pages/Project';
-import Innovation from '../pages/areas/innovation/Innovation';
+import InnovationPage from '../pages/areas/innovation/Innovation';
 import Strategy from '../pages/areas/innovation/axes/Strategy';
 import Leadership from '../pages/areas/innovation/axes/Leadership';
 import HumanResources from '../pages/areas/innovation/axes/HumanResources';
@@ -11,18 +11,19 @@ import Investigation from '../pages/areas/innovation/axes/Investigation';
 import Culture from '../pages/areas/innovation/axes/Culture';
 import Technology from '../pages/areas/innovation/axes/Technology';
 import InnovationResults from '../pages/areas/innovation/InnovationResults';
-import DigitalTransformation from '../pages/areas/digitalTransformation/DigitalTransformation';
+import DigitalTransformationPage from '../pages/areas/digitalTransformation/DigitalTransformation';
 import Client from '../pages/areas/digitalTransformation/axes/Client';
 import DigitalStrategy from '../pages/areas/digitalTransformation/axes/Strategy';
 import DigitalCulture from '../pages/areas/digitalTransformation/axes/Culture';
 import DigitalTechnology from '../pages/areas/digitalTransformation/axes/Technology';
-import Industry from '../pages/areas/industry4.0/Industry';
+import IndustryPage from '../pages/areas/industry4.0/Industry';
 import IndustryTechnology from '../pages/areas/industry4.0/axes/Technology';
 import IndustryPersons from '../pages/areas/industry4.0/axes/Persons';
 import IndustryStrategy from '../pages/areas/industry4.0/axes/Strategy';
 import IndustrySkills from '../pages/areas/industry4.0/axes/IndustrySkills';
 import IndustryResults from '../pages/areas/industry4.0/IndustryResults';
 import DigitalResults from '../pages/areas/digitalTransformation/DigitalResults';
+import Prueba from '../pages/Prueba';
 
 const UserRoutes = () => {
    return (
@@ -49,7 +50,7 @@ const UserRoutes = () => {
          />
          <Route
             path='/projects/:projectName/industry4.0'
-            element={<Industry />}
+            element={<IndustryPage />}
          />
          <Route
             path='/projects/:projectName/digitalTransformation/results'
@@ -73,7 +74,9 @@ const UserRoutes = () => {
          />
          <Route
             path='/projects/:projectName/digitalTransformation'
-            element={<DigitalTransformation />}
+            element={
+               <DigitalTransformationPage />
+            }
          />
          <Route
             path='/projects/:projectName/innovation/results'
@@ -105,7 +108,7 @@ const UserRoutes = () => {
          />
          <Route
             path='/projects/:projectName/innovation'
-            element={<Innovation />}
+            element={<InnovationPage />}
          />
          <Route
             path='/projects/:projectName'
@@ -115,6 +118,7 @@ const UserRoutes = () => {
             path='/projects'
             element={<ProjectsPage />}
          />
+         {/* <Route path='/' element={<Prueba />} /> */}
          <Route path='/' element={<Home />} />
       </Routes>
    );

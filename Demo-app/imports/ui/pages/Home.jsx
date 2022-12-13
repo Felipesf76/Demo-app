@@ -1,6 +1,6 @@
-import React from 'react'
-import ResponsiveAppBar from '../components/mainProject/AppBar'
-import { Box, CssBaseline, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import MainProyect from '../components/mainProject/MainProyect'
+import { Box, Grid, Typography } from '@mui/material'
 
 const Home = () => {
 
@@ -8,40 +8,45 @@ const Home = () => {
         {
             name: 'GAMMA INGENIEROS',
             logo: 'images/gamma logo.png',
+            color: '#000'
         },
         {
             name: 'POLITÉCNICO GRAN COLOMBIANO',
             logo: 'images/poli logo.png',
+            color: '#000'
         },
         {
             name: 'UNIVERSIDAD SANTO TOMÁS',
             logo: 'images/usta.png',
+            color: '#fff'
         },
         {
             name: 'FUNDACIÓN TECNALIA COLOMBIA',
             logo: 'images/tecnalia-logo-color.png',
+            color: '#fff'
         },
         {
             name: 'MGM INGENIERÍA Y PROYECTOS',
             logo: 'images/mgm ingenieros.png',
+            color: '#000'
         },
         {
             name: 'GRUPO VISTA',
             logo: 'images/logo grupo vista.jpeg',
+            color: '#fff'
         },
 
     ]
 
     return (
         <>
-            <CssBaseline>
-                <ResponsiveAppBar />
+            <MainProyect >
                 <Box
                     sx={{
-                        width: '100vw',
                         height: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
+                        flexWrap: 'wrap',
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}
@@ -58,38 +63,30 @@ const Home = () => {
                         <br />
                         ES APLICABLE A EMPRESAS DE CUALQUIER SECTOR Y TAMAÑO
                     </Typography>
-                    <Box
-                        sx={{
-                            width: '100vw',
-                            height: 'auto',
-                            display: 'flex',
-                            flexDirection: 'row',
-                            flexWrap: 'wrap',
-                            justifyContent: 'space-around',
-                        }}
+                    <Grid
+                        container
+                        rowSpacing={1}
+                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                     >
                         {
                             companies.map((company) => (
-                                <Box
+                                <Grid
                                     key={company.name}
-                                    backgroundColor='grey'
-                                    height='200px'
-                                    width='400px'
+                                    item
+                                    xs={6}
                                     sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        mt: 2,
-                                        mb: 2
+                                        textAlign: 'center',
                                     }}
                                 >
                                     <img
                                         src={company.logo}
                                         style={{
-                                            height: '80px',
+                                            height: '100px',
                                             width: '300px',
                                             marginTop: '15px',
+                                            backgroundColor: company.color,
+                                            placeSelf: 'center',
+                                            padding: 5
                                         }}
                                     />
                                     <Typography
@@ -103,14 +100,13 @@ const Home = () => {
                                     >
                                         {company.name}
                                     </Typography>
-                                </Box>
+                                </Grid>
 
                             ))
                         }
-                    </Box>
-                </Box>
-
-            </CssBaseline>
+                    </Grid>
+                </Box >
+            </MainProyect >
         </>
     )
 }

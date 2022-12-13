@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { Box, Button, Divider, Typography } from '@mui/material'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import MainProyect from '../../../../components/mainProject/MainProyect'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const IndustrySkills = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -42,14 +46,14 @@ const IndustrySkills = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/industry4.0`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -67,8 +71,7 @@ const IndustrySkills = () => {
                         width: '70%',
                         height: 'auto',
                         display: 'flex',
-                        flexDirection: 'column',
-                        mb: 7
+                        flexDirection: 'column'
                     }}
                 >
                     <RadioButton
@@ -106,15 +109,48 @@ const IndustrySkills = () => {
                         questionNumber='point5'
                         label='5. ¿La tecnología es un medio para resolver los problemas causando un menor impacto?'
                     />
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Link
+                        to={`/home/projects/${projectName}/industry4.0/strategy`}
+                        style={{
+                            textDecoration: 'none',
+                            color: '#000'
+                        }}
+                    >
+                        <Button
+                            variant='text'
+                            startIcon={<ArrowBackIcon />}
+                            color='inherit'
+                        >
+                            Estrategia
+                        </Button>
+                    </Link>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Finalizar
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 

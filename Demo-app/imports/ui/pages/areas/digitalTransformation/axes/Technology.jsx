@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, CssBaseline, Typography } from '@mui/material'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { Box, Button, Divider, Typography } from '@mui/material'
+import MainProyect from '../../../../components/mainProject/MainProyect'
 import RadioButton from '../../../../components/forms/RadioButton'
 import average from '../../../../components/operations/average'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const DigitalTechnology = () => {
     const { projectName } = useParams()
+    const navigate = useNavigate()
     const [value, setValue] = useState({
         point1: 0,
         point2: 0,
@@ -44,14 +48,14 @@ const DigitalTechnology = () => {
             projectName,
             strategyResult
         )
+        navigate(`/home/projects/${projectName}/digitalTransformation`)
     }
 
     return (
-        <CssBaseline>
+        <MainProyect>
             <Box
                 sx={{
                     display: 'flex',
-                    width: '100vw',
                     height: 'auto',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -69,8 +73,7 @@ const DigitalTechnology = () => {
                         width: '70%',
                         height: 'auto',
                         display: 'flex',
-                        flexDirection: 'column',
-                        mb: 7
+                        flexDirection: 'column'
                     }}
                 >
 
@@ -116,16 +119,48 @@ const DigitalTechnology = () => {
                         questionNumber='point6'
                         label='6. ¿Cómo calificaría la implementación de las tecnologías en las diferentes perspectivas de la empresa?'
                     />
-
+                    <Divider
+                        variant='fullWidth'
+                        sx={{
+                            mt: 3
+                        }}
+                    />
                 </Box>
-                <Button
-                    variant='contained'
-                    onClick={handleSave}
+                <Box
+                    sx={{
+                        width: '70%',
+                        height: '70px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
                 >
-                    Guardar
-                </Button>
+                    <Link
+                        to={`/home/projects/${projectName}/digitalTransformation/culture`}
+                        style={{
+                            textDecoration: 'none',
+                            color: '#000'
+                        }}
+                    >
+                        <Button
+                            variant='text'
+                            startIcon={<ArrowBackIcon />}
+                            color='inherit'
+                        >
+                            Cultura
+                        </Button>
+                    </Link>
+                    <Button
+                        variant='text'
+                        onClick={handleSave}
+                        endIcon={<ArrowForwardIcon />}
+                        color='inherit'
+                    >
+                        Finalizar
+                    </Button>
+                </Box>
             </Box>
-        </CssBaseline>
+        </MainProyect>
     )
 }
 
